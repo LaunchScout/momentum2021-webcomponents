@@ -23,15 +23,6 @@ marp: true
   * ES Modules
   * *Custom Events*
 ---
-# Custom Elements
-## Extend `HTMLElement`
-## Implement lifecycle methods
-* connectedCallback
-* adoptedCallback
-* disconnectedCallback
-* attributeChanged
-## Associate a tag w/ `customElements.define`
----
 # The spooooky Shadow DOM
 ## A DOM within a DOM
 ## No CSS goes in or out
@@ -63,20 +54,21 @@ marp: true
 ## Compilers (Stencil, SolidJS, Svelte)
 ## Framework wrappers (Angular, Vue)
 ---
-# But some things you (almost) always need
-## Test runner: @web/test-runner
-## ~~Build tool~~
-## Dev server: @web/dev-server
-## Starter kit: `npm init open-wc`
+
+# Custom Elements
+## Extend `HTMLElement`
+## Implement lifecycle methods
+* connectedCallback
+* adoptedCallback
+* disconnectedCallback
+* attributeChanged
+## Associate a `tag-name` w/ `customElements.define`
 ---
-
-## A brief history of pendulum swings
-
-* Dumb terminals
-* Client-server
-* Web 1.0 (server rendered apps)
-* SPAs
-* (You are here!)
+# Custom Events
+## `name`
+## `detail` - an arbitrary payload
+## `bubbles` - can be caught by parents
+## `composed` - can leave a Shadow DOM
 ---
 
 # Real-world VanillaJS: Mobile navigation
@@ -93,7 +85,9 @@ marp: true
 class NavMobileToggle extends HTMLElement {
   connectedCallback() {
     this.addEventListener("click", () => {
-      this.dispatchEvent(new CustomEvent("toggle-menu"), {bubbles: true})
+      this.dispatchEvent(
+        new CustomEvent("toggle-menu", {bubbles: true})
+      );
     });
   }
 }
@@ -148,6 +142,14 @@ customElements.define('nav-bar', NavBar);
 ## Blazor Server (.NET)
 
 ---
+## A brief history of pendulum swings
+
+* Dumb terminals
+* Client-server
+* Web 1.0 (server rendered apps)
+* SPAs
+* (You are here!)
+---
 # SRAs and Web Components
 ## SRAs are already good at HTML
 ## Custom elements are a great way to add capabilities
@@ -179,11 +181,22 @@ customElements.define('nav-bar', NavBar);
 ## Let's you render custom element children
 ## Allows you to build container elements
 ---
+# Specifics
+## `<slot><slot>` element renders content from main (light) DOM inside shadow DOM
+## `<slot name='foo></slot>` allows for multiple named slots
+
+---
 # Toggle menu example
 ---
 # HTML elements that should exist but don't (yet)
 ---
 # `<select-all-toggle>`
+---
+# But some things you (almost) always need
+## Test runner: @web/test-runner
+## ~~Build tool~~
+## Dev server: @web/dev-server
+## Starter kit: `npm init open-wc`
 ---
 # Another example: It's about time
 ## Time zones are a thing
