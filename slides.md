@@ -4,6 +4,9 @@ marp: true
 <!-- paginate: true -->
 
 # Using Web Components Well
+Chris Nelson
+chris@gaslight.co
+@superchris
 
 ---
 
@@ -23,14 +26,6 @@ marp: true
   * ES Modules
   * *Custom Events*
 ---
-# The spooooky Shadow DOM
-## A DOM within a DOM
-## No CSS goes in or out
-## Unless you want it to :)
-## Lit renders into one by default
----
-# Shadow DOM Example
----
 # Frameworks come and go but the platform evolves
 ---
 # Browser support has [arrived](https://chromestatus.com/metrics/feature/timeline/popularity/1689)
@@ -43,9 +38,9 @@ marp: true
 ## SAP 
 ---
 # Different jobs...
+## SPAs
 ## Server-rendered (with or without magic)
 ## Design Systems
-## SPAs
 ## Micro-apps (3rd party js)
 ---
 # ...need different tools
@@ -123,7 +118,7 @@ customElements.define('nav-bar', NavBar);
 ## Rendering into a Shadow DOM
 ---
 # How to choose tho?
-## There are [*soo* many options] but they are [easy to try]
+## There are [*soo* many options]() but they are [easy to try]()
 ## Performance
 ## Templating language (JSX/ES6 template literal)
 ## Design preferences (class/functional/hooks)
@@ -169,12 +164,23 @@ customElements.define('nav-bar', NavBar);
 ---
 # Let's see it!
 ---
-# Ideas that have worked well..
-## Props/attributes for inbound
-## Events for outbound
+# The spooooky Shadow DOM
+## Encapsulated DOM within a DOM
+## `querySelector` from outside DOM will not see inside
+## No CSS goes in or out
+## Unless you want it to :)
+## Lit renders into one by default
 ---
-# And not as much...
-## Components with complex internal state
+# How to Shadow DOM
+## `Element.attachShadow({mode: 'open'})`
+Creates an `open` Shadow DOM. This gives you:
+## `Element.shadowRoot`
+Once created, this is how you access it
+Quacks like a `document` (technically a `DocumentFragment`)
+* innerHTML
+* querySelector
+---
+# [Shadow DOM Example](./shadow-dom.html)
 ---
 # Slots
 ## Feature of Shadow DOM
@@ -182,35 +188,48 @@ customElements.define('nav-bar', NavBar);
 ## Allows you to build container elements
 ---
 # Specifics
-## `<slot><slot>` element renders content from main (light) DOM inside shadow DOM
-## `<slot name='foo></slot>` allows for multiple named slots
-
+## `<slot><slot>` 
+In a Shadow DOM, renders content from main (light) DOM inside shadow DOM
+## `<slot name="foo"></slot>`
+Same as above but renders a named slot
+### In children of custom element, use a`slot` attribute to fill a named slot
+```html
+<custom-element>
+  I am in the default, un-named slot
+  <div slot="foo">I am in the slot named foo</div>
+</custom-element>
+```
 ---
-# Toggle menu example
+# [Simple slot example](./gray-box.html)
 ---
-# HTML elements that should exist but don't (yet)
+# Behavioral element example: [`<select-all-toggle>`](select-all.html)
 ---
-# `<select-all-toggle>`
+# Microapps
+What you used to do with third party javascript, you can do better with Custom Elements
 ---
-# But some things you (almost) always need
+# Some things you (almost) always need
 ## Test runner: @web/test-runner
 ## ~~Build tool~~
 ## Dev server: @web/dev-server
 ## Starter kit: `npm init open-wc`
 ---
-# Another example: It's about time
-## Time zones are a thing
-## What if we could make them go away?
-(or at least not be *our* problem)
-
+# Design systems
+## There are a lot based on Custom Elements
 ---
-
-# `datetime-utc-elements`
-## Let's you store datetimes as UTC
-## User interacts with them in their local timezone
-## Too simple? Maybe?
-
+# SPAs
+## Lots of options
+## You might need a router
 ---
-
-# `<datetime-utc-output>`
+# Testing custom elements
+---
+# Some Final Thoughts
+## Think in terms of HTML Elements that should exist but don't
+## Use attributes or properties to pass data in
+## Use (Custom) Events to send data out
+---
+# Final(er) Thoughts
+## Test your Custom Elements
+## Simpler is always better
+## Choose a library that fits
+---
 

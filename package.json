@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "marp -o index.html slides.md",
+    "start": "wds --node-resolve"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@marp-team/marp-cli": "^1.4.1"
+    "@marp-team/marp-cli": "^1.4.1",
+    "@web/dev-server": "^0.1.25",
+    "lit": "^2.0.2"
   }
 }
