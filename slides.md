@@ -22,8 +22,6 @@ chris@gaslight.co
 ##  Several specs that work together:
   * Custom Elements
   * Shadow DOM
-  * HTML Templates
-  * ES Modules
   * *Custom Events*
 ---
 # Frameworks come and go but the platform evolves
@@ -37,13 +35,17 @@ chris@gaslight.co
 ## Salesforce
 ## SAP 
 ---
-# Different jobs...
+# It is early times
+## We are just beginning to understand what we can do with them
+## I am excite!
+---
+# Different jobs
 ## SPAs
 ## Server-rendered (with or without magic)
 ## Design Systems
 ## Micro-apps (3rd party js)
 ---
-# ...need different tools
+# Different approaches
 ## VanillaJS HTMLElement
 ## Libraries (Lit, FAST)
 ## Compilers (Stencil, SolidJS, Svelte)
@@ -57,7 +59,9 @@ chris@gaslight.co
 * adoptedCallback
 * disconnectedCallback
 * attributeChanged
-## Associate a `tag-name` w/ `customElements.define`
+## `customElements.define`
+Associates a `tag-name` with a class
+
 ---
 # Custom Events
 ## `name`
@@ -110,28 +114,9 @@ customElements.define('nav-bar', NavBar);
 * Client-side rendering
 * Server interaction
 ---
-# Some help you might want...
-## Attribute/property handling
-* Serializing/Deserializing
-* Re-rendering on change
-## Template language
-## Rendering into a Shadow DOM
----
-# How to choose tho?
-## There are [*soo* many options]() but they are [easy to try]()
-## Performance
-## Templating language (JSX/ES6 template literal)
-## Design preferences (class/functional/hooks)
----
-# My current favorite: Lit
-## Started by Google
-## Lessons learned from Polymer
-## Simple and lightweight
----
-# Let's try Lit!
----
 
-# Server Rendered Renaissance
+# Server Rendered++
+## Server rendered with live updates over WebSockets
 ## LiveView (Elixir and Phoenix)
 ## HotWire (Ruby and Rails)
 ## Blazor Server (.NET)
@@ -155,6 +140,10 @@ customElements.define('nav-bar', NavBar);
 * Display pins from a DB search within displayed area
 * Search again when the user pans
 ---
+
+# Demo
+
+---
 # LitGoogleMaps to the rescue!
 ## `<lit-google-map>`
 * displays a map (you may have guessed that)
@@ -162,23 +151,24 @@ customElements.define('nav-bar', NavBar);
 ## `<lit-google-map-marker>`
 * nest these inside the map element to display pins
 ---
-# Let's see it!
+
+# Handling Custom Events
+## We need to make our server app aware of `bounds_changed`
+## How to do this is framework specific
+
 ---
 # The spooooky Shadow DOM
 ## Encapsulated DOM within a DOM
 ## `querySelector` from outside DOM will not see inside
 ## No CSS goes in or out
 ## Unless you want it to :)
-## Lit renders into one by default
+## Libraries often render into one by default
 ---
 # How to Shadow DOM
 ## `Element.attachShadow({mode: 'open'})`
 Creates an `open` Shadow DOM. This gives you:
 ## `Element.shadowRoot`
 Once created, this is how you access it
-Quacks like a `document` (technically a `DocumentFragment`)
-* innerHTML
-* querySelector
 ---
 # [Shadow DOM Example](./shadow-dom.html)
 ---
@@ -202,10 +192,71 @@ Same as above but renders a named slot
 ---
 # [Simple slot example](./gray-box.html)
 ---
-# Behavioral element example: [`<select-all-toggle>`](select-all.html)
+# Shadow Parts
+## Let's you choose what can be styled
+## `part` attribute in Shadow DOM
+## `::part(partName)` selector in CSS
+## Supported in modern browsers
 ---
+# [Shadow Part example](./shadow-part.html)
+---
+# Some help you might want...
+## Attribute/property handling
+* Serializing/Deserializing
+* Re-rendering on change
+## Template language
+## Rendering into a Shadow DOM
+---
+# How to choose tho?
+## There are [*soo* many options]() but they are [easy to try](https://webcomponents.dev)
+## Performance
+## Templating language (JSX/ES6 template literal)
+## Design preferences (class/functional/hooks)
+---
+# My current favorite: Lit
+## Started by Google
+## Lessons learned from Polymer
+## Simple and lightweight
+---
+
+# Putting it all together: [`<select-all-toggle>`](select-all.html)
+
+---
+
+# Design systems
+## There are a lot based on Custom Elements
+## FAST - MS
+## Carbon - IBM
+## UI5 - SAP
+## Everyone else...
+---
+# Trying them out is pretty [easy...](https://backlight.dev/)
+---
+# SPAs
+## Lots of options
+## Framework or Librar(y|ies)
+## Check out [Custom Elements Everywhere](https://custom-elements-everywhere.com)
+## Custom element "wrappers" are a thing
+---
+
 # Microapps
-What you used to do with third party javascript, you can do better with Custom Elements
+## What you used to do with third party javascript, you can do better with Custom Elements
+
+---
+
+# Example: Adding a feedback form
+
+---
+# The conventional approach
+## Add a `<script>` tag to your page
+## Limited if any control over look and feel
+## Entirely proprietary
+---
+# Custom Element micro-apps
+## You can have complete control over styling
+## Plain ole' HTML and CSS
+---
+# Demo
 ---
 # Some things you (almost) always need
 ## Test runner: @web/test-runner
@@ -213,19 +264,13 @@ What you used to do with third party javascript, you can do better with Custom E
 ## Dev server: @web/dev-server
 ## Starter kit: `npm init open-wc`
 ---
-# Design systems
-## There are a lot based on Custom Elements
----
-# SPAs
-## Lots of options
-## You might need a router
----
-# Testing custom elements
+# Starter project with tests
 ---
 # Some Final Thoughts
 ## Think in terms of HTML Elements that should exist but don't
 ## Use attributes or properties to pass data in
 ## Use (Custom) Events to send data out
+## Use Shadow DOM, slots, and parts to build powerful, flexible elements
 ---
 # Final(er) Thoughts
 ## Test your Custom Elements

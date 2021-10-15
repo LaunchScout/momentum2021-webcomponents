@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "marp -o index.html slides.md",
-    "start": "wds --node-resolve"
+    "watch": "marp --watch -o index.html slides.md",
+    "start": "wds --node-resolve",
+    "help":  "marp --help"
   },
   "author": "",
   "license": "ISC",
